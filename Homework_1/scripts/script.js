@@ -259,3 +259,4 @@ console.log(`${newPrice} руб, вместо ${price} руб`);
 // let sumAB = Number(question1) + Number(question2);
 
 // console.log(sumAB);
+// done
