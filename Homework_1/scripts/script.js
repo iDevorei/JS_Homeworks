@@ -67,8 +67,8 @@ console.log(a18, typeof a18);
 // Найдите площадь круга (SKruga) с радиусом 5см (r).
 // *solution
 
-const SKruga = (radius = 5) => {
-    let result = Math.PI * (radius ** 2);
+const SKruga = (r = 5) => {
+    let result = Math.PI * (r ** 2);
     return result;
 };
 
