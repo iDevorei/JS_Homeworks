@@ -8,20 +8,20 @@
 // %Телефон%, %Почта%.».
 // *solution
 
-// const userInformtion = () => {
-//     let name = prompt('Ваше имя?', 'Аноним');
-//     let age = +prompt('Возраст?');
-//     let city = prompt('Город проживания?', 'hidden city');
-//     let phone = +prompt('Ваш телефон?');
-//     let email = prompt('ваш e-mail?', 'hidden e-mail');
-//     let company = prompt('Текущее место работы?', 'hidden job');
+const userInformtion = () => {
+    let name = prompt('Ваше имя?', 'Аноним');
+    let age = +prompt('Возраст?');
+    let city = prompt('Город проживания?', 'hidden city');
+    let phone = +prompt('Ваш телефон?');
+    let email = prompt('ваш e-mail?', 'hidden e-mail');
+    let company = prompt('Текущее место работы?', 'hidden job');
 
-//     let userYear = new Date().getFullYear() - age;
+    let userYear = new Date().getFullYear() - age;
 
-//     return `Меня зовут ${name}. Мне ${age} лет. Я проживаю в городе ${city} и работаю в компании "${company}". Мои контактные данные: +${phone}, ${email}.\n${name} родился в ${userYear} году.`;
-// };
+    return `Меня зовут ${name}. Мне ${age} лет. Я проживаю в городе ${city} и работаю в компании "${company}". Мои контактные данные: +${phone}, ${email}.\n${name} родился в ${userYear} году.`;
+};
 
-// console.log(userInformtion());
+console.log(userInformtion());
 
 // *task 2
 // Определите по введенному возрасту (исп. значение из задания 1) год рождения. 
@@ -136,5 +136,4 @@ const decade = () => {
     };
 };
 
-console.log(day);
 console.log(decade());
