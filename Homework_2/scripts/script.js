@@ -6,6 +6,16 @@
 // Выведите на экран фразу: «Меня зовут %Имя%. Мне %Возраст% лет. Я проживаю в 
 // городе %Город% и работаю в компании %Компания%. Мои контактные данные: 
 // %Телефон%, %Почта%.».
+
+// Если возраст:
+//  - от 0 до 12 - вывести <name> is a child
+//  - с 12 до 18 - вывести <name> is a teenager
+//  иначе 
+//  - вывести Steve is an adult
+// Решить задачу 3 способами:
+// 1 if-else
+// 2 switch.
+// 3 Условный (тернарный) оператор
 // *solution
 
 const userInformtion = () => {
@@ -15,13 +25,43 @@ const userInformtion = () => {
     let phone = +prompt('Ваш телефон? (только числа)');
     let email = prompt('ваш e-mail?', 'hidden e-mail');
     let company = prompt('Текущее место работы?', 'hidden job');
+    let userAgeStatus;
 
     let userYear = new Date().getFullYear() - age;
 
     (age == 0) ? age = 'hidden' : age;
     (phone == 0) ? phone = 'hidden phone' : phone;
 
-    return `Меня зовут ${name}. Мне ${age} лет. Я проживаю в городе ${city} и работаю в компании "${company}". Мои контактные данные: +${phone}, ${email}.\n\n${name} родился в ${userYear} году.`;
+    if (age >= 0 && age < 12) {
+        userAgeStatus = `${name} is a child`;
+    } else if (age >= 12 && age < 18) {
+        userAgeStatus = `${name} is a teenager`;
+    } else if (typeof age !== "number") {
+        userAgeStatus = `${name} is an Unknown`;
+    } else {
+        userAgeStatus = `${name} is an adult`;
+    }
+
+    // тоже самое, но через тернарный оператор
+    (age >= 0 && age < 12) ? userAgeStatus = `${name} is a child` : (age >= 12 && age < 18) ?  userAgeStatus = `${name} is a teenager` : (typeof age !== "number") ? userAgeStatus = `${name} is an Unknown` : userAgeStatus = `${name} is an adult`;
+
+    // тоже самое, но через конструкцию switch
+    switch (true) {
+        case (age >= 0 && age < 12):
+            userAgeStatus = `${name} is a child`;
+            break;
+        case (age >= 12 && age < 18):
+            userAgeStatus = `${name} is a teenager`;
+            break;
+        case (typeof age !== "number"):
+            userAgeStatus = `${name} is an Unknown`;
+            break;
+        default:
+            userAgeStatus = `${name} is an adult`;
+            break;
+    }
+
+    return `Меня зовут ${name}. Мне ${age} лет. Я проживаю в городе ${city} и работаю в компании "${company}". Мои контактные данные: +${phone}, ${email}.\n\n${name} родился в ${userYear} году.\n\n${userAgeStatus}`;
 };
 
 console.log(userInformtion());
@@ -67,14 +107,18 @@ console.log(moreThenZero(-3));
 
 let a = 10;
 let b = 2;
+let sum = a + b;
+let difference = a - b;
+let multiply = a * b;
+let divide = a / b;
 
 const calculation = () => {
-    if ((a + b) > 1) {
-        return `Сумма=${a + b}. Квадрат суммы=${(a + b) ** 2}. Разность=${a - b}. Произведение=${a * b}. Частное=${a / b}.`;
+    if ((sum) > 1) {
+        return `Сумма=${sum}. Квадрат суммы=${sum ** 2}. Разность=${difference}. Произведение=${multiply}. Частное=${divide}.`;
     } else {
-        return `Сумма=${a + b}. Разность=${a - b}. Произведение=${a * b}. Частное=${a / b}.`;
-    };
-};
+        return `Сумма=${sum}. Разность=${difference}. Произведение=${multiply}. Частное=${divide}.`;
+    }
+}
 
 console.log(calculation());
 
@@ -102,6 +146,26 @@ const randomNum = (min = 0, max = 60) => {
 
 let n = randomNum();
 
+// Решить задачу используя (switch)
+switch (true) {
+    case (n >= 0 && n <= 15):
+        console.log('первая четверть часа');
+        break;
+    case (n >=16 && n <=30):
+        console.log('вторая четверть часа');
+        break;
+    case (n >=31 && n <=45):
+        console.log('третья четверть часа');
+        break;
+    case (n >=45 && n <=59):
+        console.log('четвёртая четверть часа');
+        break;
+    default:
+        console.log('error');
+        break;
+}
+
+// это через if else
 const whatTime = () => {
     if (n >= 0 && n <= 15) {
         return 'первая четверть часа';
@@ -111,7 +175,7 @@ const whatTime = () => {
         return 'третья четверть часа';
     } else {
         return 'четвёртая четверть часа';
-    };
+    }
 };
 
 console.log(whatTime());
@@ -126,7 +190,7 @@ const ramdomDays = (min = 1, max = 31) => {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
-
+// это рандомное число, вроде, должно быть от 1 до 31
 let day = ramdomDays();
 
 const decade = () => {
@@ -136,7 +200,7 @@ const decade = () => {
         return 'вторая декада';
     } else {
         return 'третья декада';
-    };
+    }
 };
 
 console.log(decade());
@@ -172,7 +236,7 @@ const showYearsInfo = () => {
         return `Меньше года, ${months}-й месяц, ${weeks}-ая неделя, ${hours} ч., ${minutes} мин., ${seconds} сек.`;
     } else {
         return `${years}-й год, ${months}-й месяц, ${weeks}-ая неделя, ${hours} ч., ${minutes} мин., ${seconds} сек.`;
-    };
+    }
 };
 console.log(showYearsInfo());
 
@@ -229,7 +293,7 @@ const monthAndSeason = () => {
         } else {
             month = 12;
             return '12 December';
-        };
+        }
     };
 
     console.log(monthName());
@@ -257,8 +321,120 @@ const monthAndSeason = () => {
 
         default:
             return 'Wrong season!';
-    };
+    }
 };
 
 console.log(monthAndSeason());
 
+// *task 
+// Пользователь вводит два числа. Найти и вывести (в alert) максимальное из двух чисел. Учтите вариант равенства чисел
+// *solution
+
+// это рандомизатор чисел от 1 до 36_500
+const ramdomNum = (min = 1, max = 36500) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+let num1 = +prompt('Введите первое число');
+let num2 = +prompt('Введите второе число');
+
+// симуляция ввода чисел, вместо промта
+// let num1 = ramdomNum();
+// let num2 = ramdomNum();
+
+if (num1 > num2) {
+    // console.log(`${num1} больше`);
+    alert(`${num1} больше`)
+} else if (num1 < num2) {
+    // console.log(`${num2} больше`);
+    alert(`${num2} больше`)
+} else {
+    // console.log('Они равны');
+    alert('Они равны');
+}
+
+// *task
+// Необходимо написать программу, которая проверяет пользователя на знание таблицы умножения. Пользователь сам вводит два целых однозначных числа через promt. Затем вводит результат умножения и в результате должен увидеть на экране правильно он ответил или нет (результат вывести в alert) 
+// *solution
+
+const tableYouKnow = () => {
+    // const ramdomSimpleNum = (min = 1, max = 9) => {
+    //     min = Math.ceil(min);
+    //     max = Math.floor(max);
+    //     return Math.floor(Math.random() * (max - min + 1) + min);
+    // };
+
+    // let firstNum = ramdomSimpleNum();
+    let firstNum = +prompt('Введите первое число, которое умножим');
+    // let secondNum = ramdomSimpleNum();
+    let secondNum = +prompt('Введите второе число, которое умножим на первое');
+    // let userAnswer = firstNum * secondNum + 1;
+    let userAnswer = +prompt('Введите ответ умножения первых двух чисел');
+    let RightAnswer = firstNum * secondNum;
+
+    if (userAnswer === RightAnswer) {
+        // return `Правильно, это ${RightAnswer}`;
+        return alert(`Правильно, это ${RightAnswer}`);
+    } else if (userAnswer !== RightAnswer) {
+        // return `Неправильно!`;
+        return alert(`Неправильно`);
+    } else {
+        // return 'Error! Need Number.';
+        return alert(`Error! Need Number.`);
+    }
+};
+
+tableYouKnow();
+
+// *task
+// Дана строка состоящая из символов, например ‘abcde’. Проверить, что первым символом этой строки является буква ‘a’. Если это так вывести слова ‘да’, в противном случае выведите ‘нет’
+// *solution
+
+let firstLetterStr = 'abcde';
+
+// через if else 
+if (firstLetterStr[0] === 'a') {
+    console.log('Да');
+} else {
+    console.log('Нет');
+}
+
+// через тернарный оператор
+(firstLetterStr[0] === 'a') ? console.log('Да') : console.log('Нет');
+
+// *через switch
+
+switch (true) {
+    case (firstLetterStr[0] === 'a'):
+        console.log('Да');
+        break;
+
+    default:
+        console.log('Нет');
+        break;
+}
+
+// *task
+// У треугольника сумма любых двух сторон должна быть больше третьей. Иначе две стороны просто «лягут» на третью и треугольника не получится.
+// Пользователь вводит поочерёдно через prompt длины трех сторон. Используя конструкцию if..else (один раз), напишите код, который должен определять, может ли существовать треугольник при таких длинах. Т. е. нужно сравнить суммы двух любых строн с оставшейся третьей стороной. Чтобы треугольник существовал, сумма всегда должна быть больше отдельной стороны.
+// *solution
+
+let side1 = +prompt('Первая сторона, введите число', '0');
+let side2 = +prompt('Вторая сторона, введите число', '0');
+let side3 = +prompt('Третья сторона, введите число', '0');
+
+let sol1 = side1 + side2;
+let sol2 = side1 + side3;
+let sol3 = side2 + side3;
+
+if (side1 === 0 || side2 === 0 || side3 === 0) {
+    console.log(`Error! Стороны должны быть больше нуля`);
+} else if (sol1 < side3 || sol2 < side2 || sol3 < side1) {
+    console.log('Error! Такой треугольник не может существовать');
+} else if (isNaN(side1) === true || isNaN(side2) === true || isNaN(side3) === true) {
+    console.log('Error! Введите число!');
+} else {
+    console.log('Такой треугольник возможен');
+}
