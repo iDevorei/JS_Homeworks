@@ -12,16 +12,19 @@ const userInformtion = () => {
     let name = prompt('Ваше имя?', 'Аноним');
     let age = +prompt('Возраст?');
     let city = prompt('Город проживания?', 'hidden city');
-    let phone = +prompt('Ваш телефон?');
+    let phone = +prompt('Ваш телефон? (только числа)');
     let email = prompt('ваш e-mail?', 'hidden e-mail');
     let company = prompt('Текущее место работы?', 'hidden job');
 
     let userYear = new Date().getFullYear() - age;
 
+    (age == 0) ? age = 'hidden' : age;
+    (phone == 0) ? phone = 'hidden phone' : phone;
+
     return `Меня зовут ${name}. Мне ${age} лет. Я проживаю в городе ${city} и работаю в компании "${company}". Мои контактные данные: +${phone}, ${email}.\n\n${name} родился в ${userYear} году.`;
 };
 
-console.log(userInformtion());
+// console.log(userInformtion());
 
 // *task 2
 // Определите по введенному возрасту (исп. значение из задания 1) год рождения. 
@@ -161,9 +164,9 @@ const showYearsInfo = () => {
     let minutes = Math.ceil(hours * 60);
     let seconds = Math.ceil(minutes * 60);
 
-    if (keyDay < 365 && keyDay < 31 && weeks < 7) {
+    if (keyDay < 7) {
         return `Меньше года, Меньше месяца, Меньше недели, ${hours} ч., ${minutes} мин., ${seconds} сек.`;
-    } else if (keyDay < 365 && keyDay < 31) {
+    } else if (keyDay < 31) {
         return `Меньше года, Меньше месяца, ${weeks}-ая неделя, ${hours} ч., ${minutes} мин., ${seconds} сек.`;
     } else if (keyDay < 365) {
         return `Меньше года, ${months}-й месяц, ${weeks}-ая неделя, ${hours} ч., ${minutes} мин., ${seconds} сек.`;
@@ -189,43 +192,47 @@ const monthAndSeason = () => {
     let day = ramdomDays();
     let month;
 
-    if (day >= 1 && day <= 31) {
-        month = 1;
-        console.log('1 January');
-    } else if (day > 31 && day <= 59) {
-        month = 2;
-        console.log('2 February');
-    } else if (day > 59 && day <= 90) {
-        month = 3;
-        console.log('3 March');
-    } else if (day > 90 && day <= 120) {
-        month = 4;
-        console.log('4 April');
-    } else if (day > 120 && day <= 151) {
-        month = 5;
-        console.log('5 May');
-    } else if (day > 151 && day <= 181) {
-        month = 6;
-        console.log('6 June');
-    } else if (day > 181 && day <= 212) {
-        month = 7;
-        console.log('7 July');
-    } else if (day > 212 && day <= 243) {
-        month = 8;
-        console.log('8 August');
-    } else if (day > 243 && day <= 273) {
-        month = 9;
-        console.log('9 September');
-    } else if (day > 273 && day <= 304) {
-        month = 10;
-        console.log('10 October');
-    } else if (day > 304 && day <= 334) {
-        month = 11;
-        console.log('11 November');
-    } else {
-        month = 12;
-        console.log('12 December');
+    const monthName = () => {
+        if (day >= 1 && day <= 31) {
+            month = 1;
+            return '1 January';
+        } else if (day > 31 && day <= 59) {
+            month = 2;
+            return '2 February';
+        } else if (day > 59 && day <= 90) {
+            month = 3;
+            return '3 March';
+        } else if (day > 90 && day <= 120) {
+            month = 4;
+            return '4 April';
+        } else if (day > 120 && day <= 151) {
+            month = 5;
+            return '5 May';
+        } else if (day > 151 && day <= 181) {
+            month = 6;
+            return '6 June';
+        } else if (day > 181 && day <= 212) {
+            month = 7;
+            return '7 July';
+        } else if (day > 212 && day <= 243) {
+            month = 8;
+            return '8 August';
+        } else if (day > 243 && day <= 273) {
+            month = 9;
+            return '9 September';
+        } else if (day > 273 && day <= 304) {
+            month = 10;
+            return '10 October';
+        } else if (day > 304 && day <= 334) {
+            month = 11;
+            return '11 November';
+        } else {
+            month = 12;
+            return '12 December';
+        };
     };
+
+    console.log(monthName());
 
     switch (month) {
         case 1:
@@ -252,6 +259,6 @@ const monthAndSeason = () => {
             return 'Wrong season!';
     };
 };
-// monthAndSeason();
+
 console.log(monthAndSeason());
 
