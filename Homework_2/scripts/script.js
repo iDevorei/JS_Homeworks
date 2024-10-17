@@ -24,7 +24,7 @@ const userInformtion = () => {
     return `Меня зовут ${name}. Мне ${age} лет. Я проживаю в городе ${city} и работаю в компании "${company}". Мои контактные данные: +${phone}, ${email}.\n\n${name} родился в ${userYear} году.`;
 };
 
-// console.log(userInformtion());
+console.log(userInformtion());
 
 // *task 2
 // Определите по введенному возрасту (исп. значение из задания 1) год рождения. 
