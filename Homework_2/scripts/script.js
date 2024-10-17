@@ -18,7 +18,7 @@ const userInformtion = () => {
 
     let userYear = new Date().getFullYear() - age;
 
-    return `Меня зовут ${name}. Мне ${age} лет. Я проживаю в городе ${city} и работаю в компании "${company}". Мои контактные данные: +${phone}, ${email}.\n${name} родился в ${userYear} году.`;
+    return `Меня зовут ${name}. Мне ${age} лет. Я проживаю в городе ${city} и работаю в компании "${company}". Мои контактные данные: +${phone}, ${email}.\n\n${name} родился в ${userYear} году.`;
 };
 
 console.log(userInformtion());
@@ -137,3 +137,121 @@ const decade = () => {
 };
 
 console.log(decade());
+
+// *task 9
+// Напишите скрипт, который переводит дни в года (условно 1г = 365дн), в месяцы 
+// (условно 1м = 31день), в недели, в часы, в минуты и в секунды. Дробные результаты 
+// вычислений принимаются. Если кол-ва дней не хватает до полного года, месяца, 
+// недели, вывести сообщение «Меньше года», «Меньше месяца» и «Меньше недели», 
+// соответственно.
+// *solution
+
+const showYearsInfo = () => {
+    const ramdomDays = (min = 1, max = 3650) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+
+    let keyDay = ramdomDays();
+    let years = Math.ceil(keyDay / 365);
+    let months = Math.ceil(keyDay / 31);
+    let weeks = Math.ceil(keyDay / 7);
+    let hours = Math.ceil(keyDay * 24);
+    let minutes = Math.ceil(hours * 60);
+    let seconds = Math.ceil(minutes * 60);
+
+    if (keyDay < 365 && keyDay < 31 && weeks < 7) {
+        return `Меньше года, Меньше месяца, Меньше недели, ${hours} ч., ${minutes} мин., ${seconds} сек.`;
+    } else if (keyDay < 365 && keyDay < 31) {
+        return `Меньше года, Меньше месяца, ${weeks}-ая неделя, ${hours} ч., ${minutes} мин., ${seconds} сек.`;
+    } else if (keyDay < 365) {
+        return `Меньше года, ${months}-й месяц, ${weeks}-ая неделя, ${hours} ч., ${minutes} мин., ${seconds} сек.`;
+    } else {
+        return `${years}-й год, ${months}-й месяц, ${weeks}-ая неделя, ${hours} ч., ${minutes} мин., ${seconds} сек.`;
+    };
+};
+console.log(showYearsInfo());
+
+// *task 10
+// Напишите скрипт, который по введенному дню (исп. значение переменной из 8 
+//     задания) в году (например, 256) определит месяц (от 1 до 12) и пору года (зима, лето и 
+//     т.д.). Скрипт определение поры года написать через switch.
+// *solution
+
+const monthAndSeason = () => {
+    const ramdomDays = (min = 1, max = 365) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+
+    let day = ramdomDays();
+    let month;
+
+    if (day >= 1 && day <= 31) {
+        month = 1;
+        console.log('1 January');
+    } else if (day > 31 && day <= 59) {
+        month = 2;
+        console.log('2 February');
+    } else if (day > 59 && day <= 90) {
+        month = 3;
+        console.log('3 March');
+    } else if (day > 90 && day <= 120) {
+        month = 4;
+        console.log('4 April');
+    } else if (day > 120 && day <= 151) {
+        month = 5;
+        console.log('5 May');
+    } else if (day > 151 && day <= 181) {
+        month = 6;
+        console.log('6 June');
+    } else if (day > 181 && day <= 212) {
+        month = 7;
+        console.log('7 July');
+    } else if (day > 212 && day <= 243) {
+        month = 8;
+        console.log('8 August');
+    } else if (day > 243 && day <= 273) {
+        month = 9;
+        console.log('9 September');
+    } else if (day > 273 && day <= 304) {
+        month = 10;
+        console.log('10 October');
+    } else if (day > 304 && day <= 334) {
+        month = 11;
+        console.log('11 November');
+    } else {
+        month = 12;
+        console.log('12 December');
+    };
+
+    switch (month) {
+        case 1:
+        case 2:
+        case 12:
+            return 'Зима';
+
+        case 3:
+        case 4:
+        case 5:
+            return 'Весна';
+
+        case 6:
+        case 7:
+        case 8:
+            return 'Лето';
+
+        case 9:
+        case 10:
+        case 11:
+            return 'Осень';
+
+        default:
+            return 'Wrong season!';
+    };
+};
+// monthAndSeason();
+console.log(monthAndSeason());
+
