@@ -20,7 +20,7 @@ const twoCycles = () => {
     }
 };
 
-twoCycles();
+// TODOtwoCycles();
 
 // *task 2
 // Выведите столбец чисел от 89 до 11 - воспользуйтесь циклом while и отделите числа 
@@ -36,7 +36,7 @@ const from89To11 = () => {
     }
 };
 
-from89To11();
+// TODOfrom89To11();
 
 // *task 3
 // С помощью цикла найдите сумму чисел от 0 до 100.
@@ -51,7 +51,7 @@ const sumFrom0To100 = () => {
     console.log(sum);
 };
 
-sumFrom0To100();
+// TODOsumFrom0To100();
 
 // *task 4
 // Найдите сумму чисел в каждом числе от 1 до 5, например: в числе 3 сумма составляет 6 
@@ -84,7 +84,7 @@ const sumOfNum = () => {
     }
 };
 
-sumOfNum();
+// TODOsumOfNum();
 
 // *task 5
 // Выведите чётные числа от 8 до 56. Решить задание через while и for.
@@ -106,7 +106,7 @@ const evenNumers = () => {
     }
 };
 
-evenNumers();
+// TODOevenNumers();
 
 // *task 6
 // Необходимо вывести на экран полную таблицу умножения (от 2 до 10) в виде: 
@@ -135,7 +135,7 @@ const tablemult = () => {
     }
 };
 
-tablemult();
+// TODOtablemult();
 
 // *task 7
 // Дано число n=1000. Делите его на 2 столько раз, пока результат деления не станет 
@@ -170,7 +170,92 @@ const actionN = () => {
     console.log(m);
 };
 
-actionN();
+// TODOactionN();
+
+// *task 8
+// Запустите цикл, в котором пользователю предлагается вводить число с клавиатуры, до 
+// тех пор, пока не будет введена пустая строка или 0. После выхода из цикла выведите 
+// общую сумму и среднее арифметическое введённых чисел. Если пользователь ввел не 
+// число, то вывести сообщение об ошибке ввода. При подсчете учесть, что пользователь 
+// может ввести отрицательное значение.
+// *solution
+
+const numForUser = () => {
+    let sum = 0;
+    let arithmetic = 0;
+    let counter = 0;
+
+    while(true) {
+        let num = Number(prompt('Enter Number', ''));
+
+        if (isNaN(num)) {
+            sum = 0;
+            arithmetic = 0;
+            alert('Error! Not a Number!!!');
+            break;
+        } else if (num === 0) break;
+
+        sum += num;
+        counter++;
+        arithmetic = sum / counter;
+    }
+
+    console.log(`сумма = ${sum}, среднее = ${arithmetic}`);
+};
+
+// TODOnumForUser();
+
+// *task 9
+// Дана строка с числами разделенными пробелами 
+// «4 98 4 6 1 32 4 65 4 3 5 7 89 7 10 1 36 8 57». Найдите самое большое и самое маленькое число в строке, используя цикл.
+// *solution
+
+const strMaxMin = () => {
+    let str = '4 98 4 6 1 32 4 65 4 3 5 7 89 7 10 1 36 8 57';
+    let maxNum = -Infinity;
+    let minNum = Infinity;
+    let flag = '';
+    let newStr = str.split(' ');
+
+    for(let i = 0; i <= newStr.length; i++) {
+        flag = newStr[i];
+        if (+maxNum < +flag) {
+            maxNum = +flag;
+        }
+        if (+minNum > +flag) {
+            minNum = +flag;
+        }
+    }
+
+    console.log(`Max Number = ${maxNum}\nMin Number = ${minNum}`);
+};
+
+strMaxMin();
+
+// *task 10
+// Дано произвольное целое число n. Написать программу, которая: 
+// a. разбивает число n на цифры и выводит их на экран; 
+// b. подсчитывает сколько цифр в числе n; 
+// c. находит сумму цифр числа n;
+// d. меняет порядок цифр числа n на обратный.
+// Пример: вводится число 123: цифр в числе = 3; сумма = 6; обратный порядок 321.
+// *solution
+
+const actionWithNumber = ()=> {
+    let num = 123456;
+    let numToStr = String(num);
+    let sumOfNum = 0;
+    let numRev = '';
+
+    for(let i = numToStr.length; i > 0; i--) {
+        sumOfNum += i;
+        numRev += i;
+    }
+
+    console.log(`Вводится число ${numToStr}. Цифр в числе ${numToStr.length}. Сумма цифр = ${sumOfNum}. Обратный порядок ${numRev}`);
+};
+
+actionWithNumber();
 
 // *решались в lesson_3
 
@@ -186,16 +271,42 @@ for(let i = 15; i <= 78; i++) {
 
 // *task
 // Необходимо вывести на экран числа от 50 до 1 с шагом 5 и 10.
+// дополнительно: Необходимо вывести на экран числа от 50 до 1 с шагом 2, 5 и 10. Решите задачу двумя циклами.
 // *solution
 console.log('------------------------------------');
 
-for(let i = 50; i >= 1; i -= 5) {
-    console.log(i);
-}
+const from50To1 = () => {
+    for(let i = 50; i >= 1; i -=2) {
+        console.log(i);
+    }
+    for(let i = 50; i >= 1; i -= 5) {
+        console.log(i);
+    }
+    
+    for(let i = 50; i >= 1; i -= 10) {
+        console.log(i);
+    }
 
-for(let i = 50; i >= 1; i -= 10) {
-    console.log(i);
-}
+    let i = 50;
+    while(i >= 1) {
+        console.log(i);
+        i -= 10;
+    }
+
+    i = 50;
+    while(i >= 1) {
+        console.log(i);
+        i -= 5;
+    }
+
+    i = 50;
+    while(i >= 1) {
+        console.log(i);
+        i -= 2;
+    }
+};
+
+from50To1();
 
 // *task
 // Выведите в консоль фразу "Hello World!" в обратном порядке.
@@ -204,13 +315,13 @@ console.log('------------------------------------');
 
 let str = 'Hello World!';
 let strRev = '';
-for(let i = str.length - 1; i >= 0; i--) {
+for(let i = (str.length - 1); i >= 0; i--) {
     strRev += str[i];
 }
 
 console.log(strRev);
 
-// *task
+// *task - это task 6 dop
 // Написать с помощью цикла while «переворот» числа. Другими словами, нужно создать новое число, у которого цифры шли бы в обратном порядке (например: 472 -> 274).
 // *solution
 console.log('------------------------------------');
@@ -225,3 +336,92 @@ while(i >= 0) {
 }
 
 console.log(Number(buffer));
+
+// *Дополнительные задачи
+
+// *task 1 dop - аналог task 1
+// *task 2 dop - аналог task 3 dop => решалось ранее в блоке lesson_3
+
+// *task 4 dop
+// 4. Найдите сумму чисел от 1 до 50, а также сумму этих же чисел, исключая четные.
+// *solution
+
+const sumOfNumOdd = () => {
+    let sum = 0;
+    let sumOdd = 0;
+    for(i = 1; i <= 50; i++) {
+        sum += i;
+        if (i % 2 !== 0) {
+            sumOdd += i;
+        }
+    }
+    console.log(`Сумма, исключая чётные ${sumOdd}\nСумма ${sum}`);
+};
+
+sumOfNumOdd();
+
+// *task 5 dop
+// Напишите программу, где пользователь вводит любое целое положительное число. А программа суммирует все числа от 1 до введенного пользователем числа.
+// *solution
+
+const userNumber = () => {
+    // let userNum = 5;
+    let userNum = +prompt('Введите положительное число');
+    let sumUserNum = 0;
+    for(let i = 1; i <= userNum; i++) {
+        sumUserNum += i;
+    }
+    console.log(`сумма чисел от 1 до ${userNum} = ${sumUserNum}`);
+};
+
+// TODOuserNumber();
+
+// *task 6 dop решено в блоке lesson_3
+
+// *task 7 dop
+// Найти самую большую цифру в целом числе.
+// *solution
+
+const bigNum = () => {
+    const ramdomNums = (min = 1, max = 9999) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+    // это рандомное число
+    let num = ramdomNums();
+    let numToStr = String(num);
+    let BiggestNum = -Infinity;
+    let flag = '';
+
+    for(let i = 0; i <= numToStr.length - 1; i++) {
+        flag = numToStr[i];
+        if (BiggestNum < +flag) {
+            BiggestNum = flag;
+        }
+        console.log(BiggestNum);
+    }
+    console.log(`Наибольшая цифра в числе ${num} = ${BiggestNum}`);
+};
+
+bigNum();
+
+// *task 8 dop
+// Вычислить сумму первой и последней цифр целого числа.
+// *solution
+
+const numFirstLast = () => {
+    let num = 6234;
+    let numToStr = String(num);
+    let firstFlag;
+    let lastFlag;
+    let sum;
+    for(let i = 0; i <= numToStr.length - 1; i++) {
+        firstFlag = +numToStr[0];
+        lastFlag = +numToStr[numToStr.length - 1];
+        sum = firstFlag + lastFlag;
+    };
+    console.log(`Сумма первой и последнй цифры числа ${num} = ${sum}`);
+};
+
+numFirstLast();
