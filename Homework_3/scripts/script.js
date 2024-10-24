@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 // *task 1
 // Выведите числа от 1 до 50 и от 35 до 8.
@@ -20,7 +20,7 @@ const twoCycles = () => {
     }
 };
 
-// TODOtwoCycles();
+twoCycles();
 
 // *task 2
 // Выведите столбец чисел от 89 до 11 - воспользуйтесь циклом while и отделите числа 
@@ -36,7 +36,7 @@ const from89To11 = () => {
     }
 };
 
-// TODOfrom89To11();
+from89To11();
 
 // *task 3
 // С помощью цикла найдите сумму чисел от 0 до 100.
@@ -51,7 +51,7 @@ const sumFrom0To100 = () => {
     console.log(sum);
 };
 
-// TODOsumFrom0To100();
+sumFrom0To100();
 
 // *task 4
 // Найдите сумму чисел в каждом числе от 1 до 5, например: в числе 3 сумма составляет 6 
@@ -84,7 +84,7 @@ const sumOfNum = () => {
     }
 };
 
-// TODOsumOfNum();
+sumOfNum();
 
 // *task 5
 // Выведите чётные числа от 8 до 56. Решить задание через while и for.
@@ -106,7 +106,7 @@ const evenNumers = () => {
     }
 };
 
-// TODOevenNumers();
+evenNumers();
 
 // *task 6
 // Необходимо вывести на экран полную таблицу умножения (от 2 до 10) в виде: 
@@ -135,7 +135,7 @@ const tablemult = () => {
     }
 };
 
-// TODOtablemult();
+tablemult();
 
 // *task 7
 // Дано число n=1000. Делите его на 2 столько раз, пока результат деления не станет 
@@ -170,7 +170,7 @@ const actionN = () => {
     console.log(m);
 };
 
-// TODOactionN();
+actionN();
 
 // *task 8
 // Запустите цикл, в котором пользователю предлагается вводить число с клавиатуры, до 
@@ -203,13 +203,14 @@ const numForUser = () => {
     console.log(`сумма = ${sum}, среднее = ${arithmetic}`);
 };
 
-// TODOnumForUser();
+numForUser();
 
 // *task 9
 // Дана строка с числами разделенными пробелами 
 // «4 98 4 6 1 32 4 65 4 3 5 7 89 7 10 1 36 8 57». Найдите самое большое и самое маленькое число в строке, используя цикл.
 // *solution
 
+// !хочется найти ещё какое-то решение
 const strMaxMin = () => {
     let str = '4 98 4 6 1 32 4 65 4 3 5 7 89 7 10 1 36 8 57';
     let maxNum = -Infinity;
@@ -321,7 +322,7 @@ for(let i = (str.length - 1); i >= 0; i--) {
 
 console.log(strRev);
 
-// *task - это task 6 dop
+// *task - это task 6 extra
 // Написать с помощью цикла while «переворот» числа. Другими словами, нужно создать новое число, у которого цифры шли бы в обратном порядке (например: 472 -> 274).
 // *solution
 console.log('------------------------------------');
@@ -339,10 +340,10 @@ console.log(Number(buffer));
 
 // *Дополнительные задачи
 
-// *task 1 dop - аналог task 1
-// *task 2 dop - аналог task 3 dop => решалось ранее в блоке lesson_3
+// *task 1 extra - аналог task 1
+// *task 2 extra - аналог task 3 extra => решалось ранее в блоке lesson_3
 
-// *task 4 dop
+// *task 4 extra
 // 4. Найдите сумму чисел от 1 до 50, а также сумму этих же чисел, исключая четные.
 // *solution
 
@@ -360,7 +361,7 @@ const sumOfNumOdd = () => {
 
 sumOfNumOdd();
 
-// *task 5 dop
+// *task 5 extra
 // Напишите программу, где пользователь вводит любое целое положительное число. А программа суммирует все числа от 1 до введенного пользователем числа.
 // *solution
 
@@ -374,11 +375,11 @@ const userNumber = () => {
     console.log(`сумма чисел от 1 до ${userNum} = ${sumUserNum}`);
 };
 
-// TODOuserNumber();
+userNumber();
 
-// *task 6 dop решено в блоке lesson_3
+// *task 6 extra решено в блоке lesson_3
 
-// *task 7 dop
+// *task 7 extra
 // Найти самую большую цифру в целом числе.
 // *solution
 
@@ -399,17 +400,17 @@ const bigNum = () => {
         if (BiggestNum < +flag) {
             BiggestNum = flag;
         }
-        console.log(BiggestNum);
     }
     console.log(`Наибольшая цифра в числе ${num} = ${BiggestNum}`);
 };
 
 bigNum();
 
-// *task 8 dop
+// *task 8 extra
 // Вычислить сумму первой и последней цифр целого числа.
 // *solution
 
+// ?зачем тут вообще нужен цикл
 const numFirstLast = () => {
     let num = 6234;
     let numToStr = String(num);
@@ -425,3 +426,62 @@ const numFirstLast = () => {
 };
 
 numFirstLast();
+
+// *task 9 extra
+// Посчитайте и выведете кол-во встречающихся чисел в строке “В 1996 году компания Microsoft выпустила аналог языка JavaScript, названный JScript. Анонсирован этот язык был 18 июля 1996 года[29]. Первым браузером, поддерживающим эту реализацию, был Internet Explorer 3.0.”
+// *solution
+
+const findNumber = () => {
+    let str = 'В 1996 году компания Microsoft выпустила аналог языка JavaScript, названный JScript. Анонсирован этот язык был 18 июля 1996 года[29]. Первым браузером, поддерживающим эту реализацию, был Internet Explorer 3.0.';
+    let counter = 0;
+
+    for(let i = 0; i <= str.length - 1; i++) {
+        if ((str[i] == +str[i]) && (str[i] != ' ')) {
+            counter++;
+        }
+    }
+    console.log(`Чисел в строке ${counter}`);
+};
+
+findNumber();
+
+// *task 10 extra
+// Нарисуйте в консоле браузера прямоугольный треугольник заполненный символом #.
+// #
+// ##
+// ###
+// ####
+// #####
+// *solution
+
+const triangle = () => {
+    let tring = '';
+    let max = 4;
+    for(let i = 0; i <= max; i++) {
+        tring += '*';
+        console.log(tring);
+    }
+};
+
+triangle();
+
+// *task 12 extra
+// Посчитать, сколько раз встречается определенная цифра в введенной последовательности чисел. Количество вводимых чисел и цифра, которую необходимо посчитать вводится пользователем.
+// *solution
+
+// !этот код жутко тормозит
+// !работает только, если нужно найти однозначное число
+const numIntoNum = () => {
+    let numb = +prompt('ВВедите число, в котором будем искать цифру');
+    let numbToStr = String(numb);
+    let num = +prompt('Введите цифру, которую будем искать');
+    count = 0;
+    for(let i = 0; i <= numbToStr - 1; i++) {
+        if (+numbToStr[i] === num) {
+            count++;
+        }
+    }
+    console.log(`Цифра ${num} встречается ${count} раз(а).`);
+};
+
+numIntoNum();
