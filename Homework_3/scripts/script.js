@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 // *task 1
 // Выведите числа от 1 до 50 и от 35 до 8.
@@ -184,9 +184,10 @@ const numForUser = () => {
     let sum = 0;
     let arithmetic = 0;
     let counter = 0;
+    let intermediate = 0;
 
     while(true) {
-        let num = Number(prompt('Enter Number', ''));
+        let num = Number(prompt('Enter Number(конец: ноль или пусто)', ''));
 
         if (isNaN(num)) {
             sum = 0;
@@ -197,7 +198,8 @@ const numForUser = () => {
 
         sum += num;
         counter++;
-        arithmetic = sum / counter;
+        intermediate = sum / counter;
+        arithmetic = Math.round(intermediate);
     }
 
     console.log(`сумма = ${sum}, среднее = ${arithmetic}`);
@@ -475,7 +477,7 @@ const numIntoNum = () => {
     let numb = +prompt('ВВедите число, в котором будем искать цифру');
     let numbToStr = String(numb);
     let num = +prompt('Введите цифру, которую будем искать');
-    count = 0;
+    let count = 0;
     for(let i = 0; i <= numbToStr - 1; i++) {
         if (+numbToStr[i] === num) {
             count++;
