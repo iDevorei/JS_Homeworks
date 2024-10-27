@@ -26,7 +26,6 @@ twoCycles();
 // Выведите столбец чисел от 89 до 11 - воспользуйтесь циклом while и отделите числа 
 // тегом <br /> друг от друга, чтобы получить столбец, а не строку.
 // *solution
-console.log('------------------------------------');
 
 const from89To11 = () => {
     let i = 89;
@@ -478,7 +477,7 @@ const numIntoNum = () => {
     let numbToStr = String(numb);
     let num = +prompt('Введите цифру, которую будем искать');
     let count = 0;
-    for(let i = 0; i <= numbToStr - 1; i++) {
+    for(let i = 0; i <= numbToStr.length - 1; i++) {
         if (+numbToStr[i] === num) {
             count++;
         }
