@@ -265,8 +265,6 @@ console.log(`----------------------------------------`);
 // пользователь. Например: высота = 5, на экране:
 // *solution
 
-// ?Зачем тут массивы? Или как это делать через массивы?
-
 const triangle = () => {
     let stars = '';
     let max = +prompt('Введите число - основание для пирамиды');
@@ -287,3 +285,302 @@ const triangle = () => {
 }
 
 triangle();
+
+console.log(`----------------------------------------`);
+
+// *task 1 extra
+// Найдите сумму элементов массива (3, -5, "23", 0, "0", 1, -9)
+// *solution
+
+const sumArrElem = () => {
+    let arr = [3, -5, "23", 0, "0", 1, -9];
+    let sum = 0;
+
+    for(let i = 0; i < arr.length; i++) {
+        sum += +arr[i];
+    }
+
+    console.log(`Сумма = ${sum}`);
+}
+
+sumArrElem();
+
+console.log(`----------------------------------------`);
+
+// *task 2 extra
+// Посчитайте кол-во отрицательных, положительных элементов, а также  элементов со строчным типом данных.
+// *solution
+
+const PlusMinStr = () => {
+    let arr = [3, -5, "23", 0, "0", 1, -9];
+    let counterPlus = 0;
+    let counterMin = 0;
+    let counterStr = 0;
+
+    for(let i = 0; i < arr.length; i++) {
+        if (+arr[i] < 0) {
+            counterMin++;
+        } else if (typeof arr[i] === typeof 'string') {
+            counterStr++;
+        } else {
+            counterPlus++;
+        }
+    }
+    
+    console.log(counterPlus, counterMin, counterStr);
+}
+
+PlusMinStr();
+
+console.log(`----------------------------------------`);
+
+// *task 3 extra
+// Найдите максимальный и минимальный элементы массива [23, 2, 0, , -2, 56, 12, 11]. Выведите эти элементы и их сумму
+// *soluton
+
+const arrMinMaxSum = () => {
+    let arrMinMax = [23, 2, 0, , -2, 56, 12, 11];
+    let maxNum = -Infinity;
+    let minNum = Infinity;
+
+    for(let i = 0; i < arrMinMax.length; i++) {
+        if (+arrMinMax[i] > +maxNum) maxNum = arrMinMax[i];
+        if (+arrMinMax[i] < +minNum) minNum = arrMinMax[i];
+    }
+
+    let sum = maxNum + minNum;
+    console.log(maxNum, minNum, sum);
+}
+
+arrMinMaxSum();
+
+console.log(`----------------------------------------`);
+
+// *task 4 extra
+// Создайте произвольный массив и выведите его перевернутую версию (создав новый массив), например: [0, ‘N’, 98, ‘Text’, 3, 5] => [5, 3, ‘Text’, 98, ‘N’, 0]
+// *solution
+
+const arrToReverse = () => {
+    let arr = [0, 'N', 98, 'Text', 3, 5];
+    let arrRev = [];
+
+    for(let i = arr.length - 1; i >= 0; i--) {
+        arrRev.push(arr[i]);
+    }
+
+    console.log(arrRev);
+}
+
+arrToReverse();
+
+console.log(`----------------------------------------`);
+
+// *task 5 extra
+// Есть два массива с числовыми значениями одинаковой длины. Создайте третий массив с суммами элементов данных массивов. Например:  [12,4,0] + [8,7,6] = [20, 11, 6].
+// *solution
+
+const sumOfArrs = () => {
+    let arr1 = [12,4,0];
+    let arr2 = [8,7,6];
+    let arr3 = [];
+
+    for(let i = 0; i < arr1.length; i++) {
+        arr3.push(arr1[i] + arr2[i]);
+    }
+
+    console.log(arr3);
+}
+
+sumOfArrs();
+
+console.log(`----------------------------------------`);
+
+// *task 6 extra
+// Дан массив целых чисел (минимум 6 элементов). Проверить, есть ли в нем одинаковые элементы. Вывести в консоль: “Есть повторки!”, “Нет повторов”.
+// *solution
+
+const checkDoubleNums = () => {
+    let arr = [45, 2, 0, 23, 15, 2, 4, 9];
+    let check = false;
+
+    for(let i = 0; i < arr.length; i++) {
+        let index = arr.indexOf(arr[i]);
+        if (index !== -1 && index !== i) check = true;
+    }
+
+    console.log(check ? `Есть повторы` : `Нет повторов`);
+}
+
+checkDoubleNums();
+
+console.log(`----------------------------------------`);
+
+// *task 7 extra
+// Создайте массив из пяти имен и выведите их на экран те из них, которые начинаются с определенной буквы, которая вводится с клавиатуры.
+// *solution
+
+const arrNames = () => {
+    let arr = ['Arya', 'Margaery', 'Tyrion', 'Tywin', 'Cersei'];
+    let arrNames = [];
+    let letter = 'T';
+
+    for(let i = 0; i < arr.length; i++) {
+        if (arr[i][0] === letter) {
+            arrNames.push(arr[i])
+        }
+    }
+    console.log(arrNames);
+}
+
+arrNames();
+
+// *task 8 extra
+// Если в одномерном массиве имеются три подряд идущих одинаковых элемента, то переменной r присвоить значение истина
+// *solution
+
+const threeLikeOne = () => {
+    let arr = [1, 2, 3, 3, 3, 4, 5];
+    let r = false;
+
+    for(let i = 0; i < arr.length; i++) {
+        if (arr[i] === arr[i + 1] && arr[i] === arr[i + 2]) {
+            r = true;
+            break;
+        }
+    }
+    console.log(r);
+}
+
+threeLikeOne();
+
+console.log(`----------------------------------------`);
+
+// *task 9 extra
+// Заданы два массива. Один содержит наименование услуг, а другой – расценки за эти услуги. Удалите из обоих массивов все элементы, которые по цене равняются n  рублей. Выведите оба массива и удаленные элементы.
+// *solution
+
+const serviceAndPrice = () => {
+    let services = ['service one', 'service two', 'service three', 'service four'];
+    let price = [10, 20, 30, 40];
+    let n = 20;
+    let indexN = 0;
+    let delPrice;
+    let delServ;
+
+    for(let i = 0; i < price.length; i++) {
+        if (n === price[i]) {
+            indexN = price.indexOf(n);
+            delPrice = price.splice(indexN, 1);
+            delServ = services.splice(indexN, 1);
+        }
+        console.log(`Услуга ${services[i]}: $${price[i]}`);
+    }
+    console.log(`Удалена услуга ${delServ}: $${delPrice}`);
+}
+
+serviceAndPrice();
+
+console.log(`----------------------------------------`);
+
+// *task 10 extra
+// Найти номер и значение первого найденного отрицательного элемента массива.
+// *solution
+
+const negativeElem = () => {
+    let arr = [21, 11, 7, -3, 9, -5, 8];
+    let numNegative = 0;
+    let indexNegative;
+
+    // одним циклом
+    // for(let item of arr) {
+    //     if (item < 0) {
+    //         numNegative = item;
+    //         break;
+    //     }
+    // }
+    // indexNegative = arr.indexOf(numNegative);
+    // console.log(indexNegative);
+    // console.log(numNegative);
+
+    // другим циклом
+    for(let i = 0; i < arr.length; i++) {
+        if (arr[i] < 0) {
+            numNegative = arr[i];
+            break;
+        }
+    }
+    indexNegative = arr.indexOf(numNegative);
+    console.log(`Число ${numNegative}, его индекс ${indexNegative}`);
+}
+
+negativeElem();
+
+console.log(`----------------------------------------`);
+
+// *task 11 extra
+// Дан массив, содержащий положительные и отрицательные числа. Заменить все элементы массива на противоположные по знаку. Например, задан массив [1, -5, 0, 3, -4]. После преобразования должно получиться [-1, 5, 0, -3, 4].
+// *solution
+
+const changeNums = () => {
+    let arr = [1, -5, 0, 3, -4];
+
+    for(let i = 0; i < arr.length; i++) {
+        if (arr[i] !== 0) {
+            arr[i] = -arr[i]
+        }
+    }
+
+    console.log(arr);
+}
+
+changeNums();
+
+console.log(`----------------------------------------`);
+
+// *task 13 extra
+// Поменяйте местами максимальный и минимальных элементы в массиве.
+// *solution 
+
+const changeMinMax = () => {
+    let arr = [11, 12, 1, 14, 15, 99, 18];
+    let maxElem = -Infinity;
+    let minElem = Infinity;
+    let maxIndex;
+    let minIndex;
+    let buffer = 0;
+
+    for(let i = 0; i < arr.length; i++) {
+        if (maxElem < arr[i]) maxElem = arr[i];
+        if (minElem > arr[i]) minElem = arr[i];
+    }
+    maxIndex = arr.indexOf(maxElem);
+    minIndex = arr.indexOf(minElem);
+    buffer = arr[minIndex];
+    arr[minIndex] = arr[maxIndex];
+    arr[maxIndex] = buffer;
+    console.log(arr);
+}
+
+changeMinMax();
+
+console.log(`----------------------------------------`);
+
+// *task 14 extra
+// Выполните сортировку массива с разными числовыми элементами.
+// *solition
+
+const arrSort = () => {
+    let arr = [1, -5, 0, 2, 11, 22, 212];
+
+    // безопасная сортировка
+    // let sortSave = arr.toSorted();
+    // console.log(sortSave);
+
+    // обычная сортировка
+    console.log(arr.sort());
+
+    // сортировка по возрастанию
+    console.log(arr.sort((a, b) => a - b));
+}
+
+arrSort();
