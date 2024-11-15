@@ -119,14 +119,14 @@ console.log(getEvenArr(someArr));
 // *solution
 
 const getBasisFoTreangle = () => {
-    let number = +prompt('Введите число для основания греугольника');
-    // let number = 9;
+    // let number = +prompt('Введите число для основания греугольника');
+    let number = 9;
     return number;
 }
 
 const getNonStandartSymbol = () => {
-    let symbol = prompt(`Если хотите, можете ввести не стандартный символ`);
-    // let symbol = '*';
+    // let symbol = prompt(`Если хотите, можете ввести не стандартный символ`);
+    let symbol = '*';
     if (!symbol) return 1;
     else return symbol;
 }
@@ -147,3 +147,106 @@ const createTreangle = (basis, elem) => {
 }
 
 console.log(createTreangle(getBasisFoTreangle(), getNonStandartSymbol()));
+
+// *task 8
+// Напишите ф-цию, которая рисует равнобедренный треугольник из 
+// звездочек.
+// Кол-во рядов должно вводиться с клавиатуры. Доп., напишите такую же ф-
+// цию, но которая выведет перевернутый треугольник.
+// *solution
+
+const rightTriangle = (height, symbol) => {
+    for(let i = 1; i <= height; i++) {
+        let line = '';
+
+        for(let j = 1; j <= (height - i); j++) {
+            line += ' ';
+        }
+
+        for(let k = 1; k <= ((i * 2) - 1); k++) {
+            line += symbol;
+        }
+
+        console.log(line);
+    }
+}
+
+rightTriangle(7, '*');
+
+const showInvertedTriangle = (height, symbol) => {
+    for(let i = height; i > 0; i--) {
+        let line = '';
+
+        for(let j = 1; j <= (height - i); j++) {
+            line += ' ';
+        }
+
+        for(let k = 1; k <= ((i * 2) - 1); k++) {
+            line += symbol;
+        }
+
+        console.log(line);
+    }
+}
+
+showInvertedTriangle(7, '*');
+
+// *task 9
+// Напишите ф-цию, которая возвращает массив заполненный числами 
+// Фибоначи от 0 до 1000.
+// *solution
+
+const getFibonachi = () => {
+    let fibonachiArray = [];
+    let i = 0;
+    let flag = 1000;
+
+    while(true) {
+        if (i === 0 || i === 1) {
+            fibonachiArray.push(i)
+        } else {
+            let formulaFibonach = fibonachiArray[i - 1] + fibonachiArray[i - 2];
+            if (formulaFibonach >= flag) break;
+            fibonachiArray.push(formulaFibonach);
+        }
+        i++;
+    }
+    return fibonachiArray;
+}
+
+let arrWithFibonachi = getFibonachi();
+console.log(arrWithFibonachi);
+
+// *task 10
+// Дано число. Сложите его цифры. Если сумма получилась более 9-ти, 
+// опять сложите его цифры. И так, пока сумма не станет однозначным числом 
+// (9 и менее). Исп. Рекурсию.
+// *solution
+
+function calcNumberPerNine(number) {
+    let numToStr = String(number);
+    // console.log(numToStr);
+    let sum = 0;
+
+    for(let i = 0; i < numToStr.length; i++) {
+        sum += +numToStr[i];
+    }
+
+    if(sum >= 9) return calcNumberPerNine(sum)
+    else return 'Done';
+}
+
+console.log(calcNumberPerNine(654998989));
+
+// *task 11
+// Дан массив с числами (передается параметром). Выведите 
+// последовательно его элементы, используя рекурсию и не используя цикл.
+// *solution
+
+function showLastElems(arr, i = 0) {
+    console.log(arr[i]);
+    i++;
+    if (i < arr.length) return showLastElems(arr, i)
+}
+
+showLastElems([1, 2, 5, 45, 15]);
