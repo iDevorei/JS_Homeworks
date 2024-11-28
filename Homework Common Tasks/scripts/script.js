@@ -72,3 +72,22 @@ showHowManyDays('2024.06.14', '2024.06.15');
 showHowManyDays('2024.06.10', '2024.06.15');
 showHowManyDays('2024.06.01', '2024.06.15');
 showHowManyDays('2024.06.15', '2024.06.11');
+
+// *task 4
+// 4. Напишите функцию celsiusToFahrenheit(celsius), которая конвертирует температуру из градусов Цельсия в градусы Фаренгейта. В зависимости от температуры, выведите предупреждение: "сегодня прохладнее, чем обычно" (от 5 до 10), "одевайтесь теплее" (от 0 до 5), "сегодня очень холодно" (меньше 0 и до -5), "оставайтесь дома" (< -5).
+// *solution
+
+function celsiusToFahrenheit(celsius) {
+    let convert = ((celsius * (9 / 5)) + 32).toFixed(1);
+    let result = +convert;
+    // из рассчёта, что имеется в виду градусы Фаренгейта
+    if (result > 5 && result <= 10) return console.log('сегодня прохладнее, чем обычно');
+    else if (result >= 0 && result <= 5) return console.log('одевайтесь теплее');
+    else if (result < 0 && result >= -5) return console.log('сегодня очень холодно');
+    else if (result < -5) return console.log('оставайтесь дома');
+}
+
+celsiusToFahrenheit(-14);
+celsiusToFahrenheit(-15);
+celsiusToFahrenheit(-19);
+celsiusToFahrenheit(-25);
