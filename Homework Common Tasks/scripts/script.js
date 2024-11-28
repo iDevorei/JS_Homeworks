@@ -104,3 +104,50 @@ function randomElement(arr) {
     return console.log(arr[random]);;
 }
 randomElement([-23, 15, 'test', ['text', 235], 326]);
+
+// *task 6
+// 6. Шифр Цезаря: Напишите функцию, которая шифрует латинскую строку с помощью шифра Цезаря с заданным сдвигом. Например: "table" со сдвигом 2 будет "vcdng". Каждая буква "table" имеет свой номер в таблице ASCI (116, 97, 98, 108, 101). Создайте вторую функцию, которая будет расшифровывать текст, если передать правильный ключ сдвига.
+// *solution
+
+// table
+// 2
+// vcdng
+
+// функция-шифратор
+function createEncryptCaesar(string, step) {
+    let encryptStr = '';
+    let encryptArr = [];
+
+    for (let i = 0; i < string.length; i++) {
+        encryptArr.push(string.codePointAt(i));
+    };
+
+    for (let i = 0; i < encryptArr.length; i++) {
+        encryptStr += String.fromCodePoint(encryptArr[i] + step);
+    };
+
+    return console.log(encryptStr);
+}
+
+createEncryptCaesar('table', 2);
+createEncryptCaesar('Hello, world!', 1);
+
+// функция-дешифратор
+// расшифровывает, если подбирать step нужной величины
+function createDecryptCaesar(code, step) {
+    let decryptStr = '';
+    let decryptArr = [];
+
+    for (let i = 0; i < code.length; i++) {
+        decryptArr.push(code.codePointAt(i))
+    };
+
+    for (let i = 0; i < decryptArr.length; i++) {
+        decryptStr += String.fromCodePoint(decryptArr[i] - step)
+    }
+
+    return console.log(decryptStr);
+}
+
+createDecryptCaesar('vcdng', 2);
+createDecryptCaesar('Ifmmp-!xpsme"', 1);
