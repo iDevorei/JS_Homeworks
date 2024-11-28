@@ -91,3 +91,16 @@ celsiusToFahrenheit(-14);
 celsiusToFahrenheit(-15);
 celsiusToFahrenheit(-19);
 celsiusToFahrenheit(-25);
+
+// *task 5
+// 5. Функция выбора случайного элемента из массива: Создайте функцию randomElement(arr), которая возвращает случайный элемент из переданного массива.
+// *solution
+
+function randomElement(arr) {
+    let min = 0;
+    let max = arr.length - 1;
+    let random = Math.round(Math.random() * (max - min) + min);
+
+    return console.log(arr[random]);;
+}
+randomElement([-23, 15, 'test', ['text', 235], 326]);
