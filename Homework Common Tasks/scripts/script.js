@@ -6,7 +6,7 @@
 
 let citiesArr = [];
 
-function cities(citiesStr) {
+function getCities(citiesStr) {
     if (citiesStr === undefined) {
         let city = prompt('Напишите город Беларуси');
         citiesArr.push(city);
@@ -17,7 +17,7 @@ function cities(citiesStr) {
     }
 }
 
-console.log(cities('Минск, Гродно, Кричев, Червень, Фаниполь'));
+console.log(getCities('Минск, Гродно, Кричев, Червень, Фаниполь'));
 // console.log(cities());
 // console.log(cities());
 // console.log(cities());
@@ -39,7 +39,7 @@ for (let i = 1; i < arrNamesAndCities.length; i++) {
 let arrKmFromMinsk = [0, 345, 300, 200];
 
 // возможность запрашивать расстояние между другими людьми
-const distance = (a = 0, b = 3) => {
+const calcDistance = (a = 0, b = 3) => {
     a = +prompt(`Введите число, от какого человека будем считать расстояние\nИван - 0\nКатя - 1\nОльга - 2\nМаксим - 3`);
     b = +prompt(`Введите число, до какого человека будем считать расстояние\nИван - 0\nКатя - 1\nОльга - 2\nМаксим - 3`);
     let finalResult = arrKmFromMinsk[a] + arrKmFromMinsk[b];
@@ -48,3 +48,27 @@ const distance = (a = 0, b = 3) => {
 };
 
 // console.log(distance());
+
+// *task 3
+// 3. Напишите функцию, которая принимает две даты и возвращает количество дней между ними. В зависимости от значения, выведите: "дата уже близко" (< 3 дней), "еще есть время" (от 3 до 7), "далековато еще" (> 7 дней).
+// *solution
+
+function showHowManyDays(dateOne, dateTwo) {
+    let a = new Date(dateOne);
+    let b = new Date(dateTwo);
+    let c;
+    (a < b) ? c = b - a : c = a - b;
+    let days = Math.floor(c / (1000 * 60 * 60 * 24));
+    if (days < 3) {
+        console.log('Дата уже близко');
+    } else if (days >=3 && days < 7) {
+        console.log('еще есть время');
+    } else {
+        console.log('далековато еще');
+    };
+}
+
+showHowManyDays('2024.06.14', '2024.06.15');
+showHowManyDays('2024.06.10', '2024.06.15');
+showHowManyDays('2024.06.01', '2024.06.15');
+showHowManyDays('2024.06.15', '2024.06.11');
