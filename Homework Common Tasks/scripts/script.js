@@ -151,3 +151,81 @@ function createDecryptCaesar(code, step) {
 
 createDecryptCaesar('vcdng', 2);
 createDecryptCaesar('Ifmmp-!xpsme"', 1);
+
+// *task 7
+// 7. Напишите программу, которая генерирует случайным образом новый пароль, состоящий из 8 чисел (параметром можно задавать длину) и возвращает результат. По желанию, доработайте функцию: сделайте генератор паролей из латинских символов, целых чисел и специальных символов: _-,.&*^$#@+=!; минимум один большой символ, одна цифра, один спец. символ.
+// *solution
+
+// рандомизатор пароля из чисел
+function randomPass(passLength = 8) {
+    let arrPass = [];
+    const randomNum = () => {
+        let min = 0;
+        let max = 9;
+        return Math.round(Math.random() * (max - min) + min);
+    };
+
+    for (let i = 0; i < passLength; i++) {
+        arrPass.push(randomNum());
+    };
+
+    return arrPass.join('');
+}
+
+let testNumPass = randomPass();
+console.log(testNumPass);
+
+// доработанный генератор, где должно быть:
+// qwertyuiopasdfghjklzxcvbnm
+// QWERTYUIOPASDFGHJKLZXCVBNM
+// 1234567890
+// _-,.&*^$#@+=!
+// минимум один большой символ
+// одна цифра
+// один спец. символ
+
+// !минусы этого генератора:
+// он может выдать не корректный пароль вида:
+// *LSfBkundefinedG3b*
+// как отловить символ, от которого вылетает undefined???!!!
+// если делать через return, то при провале проверки в переменную полетит undefined
+
+
+function hardRandomPass(passLength = 8) {
+    let strPass = '';
+    let strLowerAbc = 'qwertyuiopasdfghjklzxcvbnm';
+    let strUpperAbc = 'QWERTYUIOPASDFGHJKLZXCVBNM';
+    let nums = '1234567890';
+    let specialSymbs = '_-,.&*^$#@+=!';
+    let allSymb = strLowerAbc + strUpperAbc + nums + specialSymbs;
+
+    const randomNum = () => {
+        let min = 0;
+        let max = allSymb.length;
+        return Math.round(Math.random() * (max - min) + min);
+    };
+
+    const generatePass = () => {
+        for(let i = 0; i < passLength; i++) {
+            strPass += allSymb[randomNum()];
+        };
+
+        return strPass;
+    };
+
+    generatePass();
+
+    let checkNums = /\d/.test(strPass);
+    let checkLowerAbc = /[A-Z]/.test(strPass);
+    let checkUpperAbc = /[a-z]/.test(strPass);
+    let checkSpecSymbs = /[-_,.&*^$#@+=!]/.test(strPass);
+
+    if (checkNums && checkLowerAbc && checkUpperAbc && checkSpecSymbs) {
+        console.log(strPass);
+    } else {
+        strPass = '';
+        hardRandomPass();
+    };
+}
+
+hardRandomPass();
