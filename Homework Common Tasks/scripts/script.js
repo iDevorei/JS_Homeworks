@@ -185,11 +185,7 @@ console.log(testNumPass);
 // один спец. символ
 
 // !минусы этого генератора:
-// он может выдать не корректный пароль вида:
-// *LSfBkundefinedG3b*
-// как отловить символ, от которого вылетает undefined???!!!
 // если делать через return, то при провале проверки в переменную полетит undefined
-
 
 function hardRandomPass(passLength = 8) {
     let strPass = '';
@@ -201,7 +197,7 @@ function hardRandomPass(passLength = 8) {
 
     const randomNum = () => {
         let min = 0;
-        let max = allSymb.length;
+        let max = allSymb.length - 1;
         return Math.round(Math.random() * (max - min) + min);
     };
 
@@ -229,3 +225,48 @@ function hardRandomPass(passLength = 8) {
 }
 
 hardRandomPass();
+
+// *task 8
+// 8. Создайте функцию, которая создает произвольный HTML-элемент в <body> в виде круга/овала/квадрата/прямоугольника. Функция должна принимать параметры: width, height, radius, color; создавать запись "<div style="width: 200px; height: 100px, border-radius: 5px; background-color: red;"></div>". Данное значение добавляйте через document.write. Подумайте о том, как сделать случайную генерацию фигур по вызову функции без параметров.
+// *solution
+
+// document.write("<div style='width: 200px; height: 100px; border-radius: 5px; background-color: orange;'></div>");
+
+function createRandomFigure(width, height, borderRadius, bGColor) {
+
+    let strColors = 'IndianRed  LightCoral  Salmon  DarkSalmon  LightSalmon  Crimson  Red  FireBrick  DarkRed  Pink  LightPink  HotPink  DeepPink  MediumVioletRed  PaleVioletRed  LightSalmon  Coral  Tomato  OrangeRed  DarkOrange  Orange  Gold  Yellow  LightYellow  LemonChiffon  LightGoldenrodYellow  PapayaWhip  Moccasin  PeachPuff  PaleGoldenrod  Khaki  DarkKhaki  Lavender  Thistle  Plum  Violet  Orchid  Fuchsia  Magenta  MediumOrchid  MediumPurple  BlueViolet  DarkViolet  DarkOrchid  DarkMagenta  Wheat  BurlyWood  Tan  RosyBrown  SandyBrown  Goldenrod  DarkGoldenRod  Peru  Chocolate  SaddleBrown  Sienna  Black  Gray  Silver  White  Fuchsia  Purple  Red  Maroon  Yellow  Olive  Lime  Green  Aqua  Teal  Blue  Navy  GreenYellow  Chartreuse  LawnGreen  Lime  LimeGreen  PaleGreen  LightGreen  MediumSpringGreen  SpringGreen  MediumSeaGreen  SeaGreen  ForestGreen  Green  DarkGreen  YellowGreen  OliveDrab  Olive  Aqua  Cyan  LightCyan  PaleTurquoise  Aquamarine  Turquoise  MediumTurquoise  DarkTurquoise  CadetBlue  SteelBlue  LightSteelBlue  White  Snow  Honeydew  MintCream  Azure  AliceBlue  GhostWhite  WhiteSmoke  Seashell  Beige  Gainsboro  LightGrey  LightGray  Silver  DarkGray  DarkGrey  Gray  Grey  DimGray  DimGrey  LightSlateGray  LightSlateGrey  SlateGray  SlateGrey  DarkSlateGray  DarkSlateGrey';
+
+    let arrColors = strColors.split('  ');
+
+    const randomNums = () => {
+        let min = 10;
+        let max = 800;
+        return Math.round(Math.random() * (max - min) + min);
+    };
+
+    if (width === undefined) width = randomNums();
+
+    if (height === undefined) height = randomNums();
+
+    const randomRaduis = () => {
+        let min = 0;
+        let max = 800;
+        return Math.round(Math.random() * (max - min) + min);
+    };
+
+    if (borderRadius === undefined) borderRadius = randomRaduis();
+
+    const randomBGColor = () => {
+        let min = 0;
+        let max = arrColors.length - 1;
+        return arrColors[Math.round(Math.random() * (max - min) + min)];
+    };
+
+    if (bGColor === undefined) bGColor = randomBGColor();
+
+    let result = document.write(`<div style='width: ${width}px; height: ${height}px; border-radius: ${borderRadius}px; background-color: ${bGColor};'></div>`);
+    
+    return result;
+}
+
+createRandomFigure();
