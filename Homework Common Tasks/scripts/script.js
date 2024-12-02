@@ -299,43 +299,56 @@ console.log(censorText);
 // 10. Создайте функцию-конструктор или отдельный простой объект "Тамагочи" с минимальным набором функций: включение, выключение, вывод общей информации о состоянии (имя, дата рождения, здоровье по 5-бальной шкале, сытость по 5 шкале, сон в часах от 0 до 8), покормить, спать. При включении "друга" запрашивается имя, автоматически добавляется дата рождения, и все показатели состояния устанавливаются в максимальные значения. Каждую минуту (или 1 час, как вы захотите), показатель сытости уменьшается на одну единицу. Каждый раз, когда сытость доходит до 1 и меньше, то уменьшается здоровье на 1 единицу. Если "друг" не спал больше 6 часов, то каждый последующий час здоровье уменьшается на 1 единицу. Чтобы восстановить здоровье, нужно быть сытым и хорошо спать: при каждом вызове метода "покормить" или "спать" соотв. параметры увеличиваются на 1 единицу. Каждый раз, когда параметры сон и сытость приходят к значению 5, то здоровье увеличивается на 1 единицу, но не может превышать максимального значения. По вашему желанию, функции тамагочи могут быть улучшены или добавлены новые. Проявите фантазию!
 // *solution
 
-// *on\off надо:
-// запрашивается имя, автоматически добавляется дата рождения, и все показатели состояния устанавливаются в максимальные значения.
-
-// *пока включён:
-// показатель сытости уменьшается на одну единицу. Каждый раз, когда сытость доходит до 1 и меньше, то уменьшается здоровье на 1 единицу
-// Если "друг" не спал больше 6 часов, то каждый последующий час здоровье уменьшается на 1 единицу.
-
-// *Чтобы восстановить здоровье, нужно быть сытым и хорошо спать:
-// когда параметры сон и сытость приходят к значению 5, то здоровье увеличивается на 1 единицу, но не может превышать максимального значения.
+// ?кормёжка и сон бесполезны, ибо для них нужно сохранять изменения, а при сохранении страница обновляется, а значит, питомец перерождается и все показатели на максимуме 
+// TODO что можно делать с тамагочей:
+// myPet.turnOn(); - включение тамагочи
+// myPet.info(); - информация о тамагоче
+// myPet.giveFood() - дать поесть
+// myPet.goToSleep() - уложить спать
+// myPet.turnOff() - выключить тамагочу, и единственный способ остановить таймеры
 
 function Tamagotchi() {
 
-    this.name,
-    this.birthday,
-    this.health,
-    this.hungry,
-    this.sleepy,
-    this.turnOnOff = false,
+    // this.name,
+    // this.birthday,
+    // this.health,
+    // this.hungry,
+    // this.sleepy,
 
+    this.turnOnOff = true,
+    // this.name = prompt(`Как зовут вашего питомца?`, `Пирожочек`),
+    this.name = 'Пирожочек',
+    // без понятия, как фиксировать дату автоматически, поэтому выставляем вручную
+    this.birthday = new Date(),
+    this.health = 5,
+    this.hungry = 5,
+    this.sleepy = 8,
+    // !как ЭТО автоматически выключить???!!!
+    setInterval(() => this.itWantEat(), 60000),
+    setInterval(() => this.itWantSleep(), 60000),
+
+    // включить тамагочу
+    // this.turnOn = function() {
+    //     // this.name = prompt(`Как зовут вашего питомца?`, `Пирожочек`),
+    //     this.name = 'Пирожочек',
+    //     // без понятия, как фиксировать дату автоматически, поэтому выставляем вручную
+    //     this.birthday = new Date(),
+    //     this.health = 5,
+    //     this.hungry = 5,
+    //     this.sleepy = 8,
+    //     // !как ЭТО автоматически выключить???!!!
+    //     setInterval(() => this.itWantEat(), 60000),
+    //     setInterval(() => this.itWantSleep(), 60000)
+    //     // this.nothing
+    // },
+
+    // информация о тамагоче
     this.info = function() {
         if (this.turnOnOff === false) {
             console.log(`Тамагочи выключен, информация недоступна`);
         } else {
             console.log(`Имя ${this.name}\nДата рождения ${this.birthday}\nЗдоровье ${this.health}\nСытость ${this.hungry}\nБодрость ${this.sleepy}`);
         };
-    },
-
-    // включить тамагочу
-    this.turnOn = function() {
-        this.turnOnOff = true,
-        // this.name = prompt(`Как зовут вашего питомца?`, `Пирожочек`),
-        this.name = 'Пирожочек',
-        // без понятия, как фиксировать дату автоматически, поэтому выставляем вручную
-        this.birthday = new Date(2024,11,1,23,20),
-        this.health = 5,
-        this.hungry = 5,
-        this.sleepy = 8
     },
 
     // дать поесть
@@ -348,26 +361,176 @@ function Tamagotchi() {
             console.log(`Покормлен. Голоден. Здоровье = ${this.health}`);
         } else if (this.health === 5 && this.hungry === 5) {
             console.log(`Питомец не голоден`);
+        } else if (this.health <= 0) {
+            console.log(`Невозможно покормить то, чего нет`);
+            this.turnOnOff = false;
+        } else if (this.turnOnOff === false) {
+            console.log(`В начале включите тамагочу`);
         }
     },
 
     // уложить спать
     this.goToSleep = function() {
         if ((this.sleepy < 8 && this.sleepy > 0) && this.health === 5) {
-            this.sleepy = 8;
-            console.log(`Выспался. Бодрость = ${this.sleepy}`);
+            this.sleepy += 1;
+            console.log(`Поспал. Бодрость = ${this.sleepy}`);
         } else if ((this.sleepy < 8 && this.sleepy > 0) && this.health < 5) {
-            this.sleepy = 8;
-            this.health = 5;
-            console.log(`Выспался. Бодрость = ${this.sleepy}. Здоровый. Здоровье = ${this.health}`);
+            this.sleepy += 1;
+            this.health += 1;
+            console.log(`Поспал. Бодрость = ${this.sleepy}. Похорошел. Здоровье = ${this.health}`);
         } else if (this.sleepy === 8 && this.health === 5) {
             console.log(`Бодрый и здоровый, спать не хочет!`);
+        } else if (this.sleepy < 0) {
+            console.log(`Зомби не спят...`);
+        } else if (this.turnOnOff === false) {
+            console.log(`В начале включите тамагочу`);
+        } else if (this.sleepy === 8 && this.health < 5) {
+            console.log(`Бодрый, не уснёт.`);
         }
-    }
+    },
 
+    // уменьшение сытости и/или здоровья
+    this.itWantEat = function() {
+        if (this.turnOnOff === true) {
+            if (this.health <= 5 && this.hungry <= 5 && this.hungry >= 1) {
+                this.hungry -= 1;
+                console.log(`Проголодался. Сытость = ${this.hungry}`);
+            } else if (this.health <= 5 && this.health > 0 && this.hungry === 0) {
+                this.health -= 1;
+                console.log(`Голодает! Сытость = ${this.hungry}. Здоровье = ${this.health}`);
+            } else if (this.health <= 0 && this.hungry === 0) {
+                console.log(`${this.name} помер с голодухи\nТамагоча выключается.`);
+                this.turnOnOff = false;
+            }
+        } else {
+            console.log(`Невозможно, тамагоча выключен.`);
+        }
+    },
+
+    // уменшьшение бодрости
+    this.itWantSleep = function() {
+        if (this.turnOnOff === true) {
+            if (this.sleepy <= 8 && this.sleepy > 2) {
+                this.sleepy -= 1;
+                console.log(`Подустал. Хочет вздремнуть. Бодрость = ${this.sleepy}`);
+            } else if (this.sleepy <= 2 && this.sleepy > 0 && this.health <= 5 && this.health > 0) {
+                this.sleepy -= 1;
+                this.health -= 1;
+                console.log(`Устал, бледнеет. Бодрость = ${this.sleepy}. Здоровье = ${this.health}`);
+            } else if (this.sleepy === 0 && this.health <= 5 && this.health > 0) {
+                this.health -= 1;
+                console.log(`Устал. Спааааать. Бодрость = ${this.sleepy}. Здоровье = ${this.health}`);
+            } else if (this.sleepy === 0 && this.health === 0) {
+                console.log(`${this.name} стал бессоным зомби. Тамагоча выключается.`);
+                this.turnOnOff = false;
+            }
+        } else {
+            console.log(`Нет. Тамагоча выключен.`);
+        }
+    },
+
+    // выключение тамагочи
+    this.turnOff = function() {
+        console.log(`Тамагоча выключается и перестаёт существовать, бездушное ты создание.`);
+        this.turnOnOff = false,
+        this.name = undefined,
+        this.birthday = undefined,
+        this.health = undefined,
+        this.hungry = undefined,
+        this.sleepy = undefined,
+        clearInterval();
+    }
 }
 
+// *что можно делать с тамагочей дублирование:
+// myPet.turnOn(); - включение тамагочи
+// myPet.info(); - информация о тамагоче
+// myPet.giveFood() - дать поесть
+// myPet.goToSleep() - уложить спать
+// myPet.turnOff() - выключить тамагочу, и единственный способ остановить таймеры
 
-let myPet = new Tamagotchi();
-myPet.turnOn();
-myPet.info();
+
+// let myPet = new Tamagotchi();
+
+// *task 7 version 2.0
+// 7. Напишите программу, которая генерирует случайным образом новый пароль, состоящий из 8 чисел (параметром можно задавать длину) и возвращает результат. По желанию, доработайте функцию: сделайте генератор паролей из латинских символов, целых чисел и специальных символов: _-,.&*^$#@+=!; минимум один большой символ, одна цифра, один спец. символ.
+// *solution
+// доработанный генератор, где должно быть:
+// qwertyuiopasdfghjklzxcvbnm
+// QWERTYUIOPASDFGHJKLZXCVBNM
+// 1234567890
+// _-,.&*^$#@+=!
+// минимум один большой символ
+// одна цифра
+// один спец. символ
+
+function hardPass(passLength = 8) {
+    let strLowerAbc = 'qwertyuiopasdfghjklzxcvbnm';
+    let strUpperAbc = 'QWERTYUIOPASDFGHJKLZXCVBNM';
+    let nums = '1234567890';
+    let specialSymbs = '_-,.&*^$#@+=!';
+    let arrPass = [];
+
+    // рандомизатор, понадобится
+    const randomNum = (maximum) => {
+        let min = 0;
+        let max = maximum.length - 1;
+        return Math.round(Math.random() * (max - min) + min);
+    };
+
+    // генерируем строку со случайными малыми буквами
+    for (let i = 0; i < passLength; i++) {
+        arrPass.push(strLowerAbc[randomNum(strLowerAbc)]);
+    };
+
+    // задаём условия для случайной генерации, если символов 5 или меншьне, то генерация пароля немного меняется
+    if (passLength > 5) {
+        for (let i = 1; i < arrPass.length; i++) {
+
+            if (i % 2 === 0) {
+                arrPass[i] = strUpperAbc[randomNum(strUpperAbc)];
+            };
+    
+            if (i % 3 === 0) {
+                arrPass[i] = nums[randomNum(randomNum)];
+            };
+    
+            if (i % 5 === 0) {
+                arrPass[i] = specialSymbs[randomNum(specialSymbs)];
+            };
+        };
+    
+        for (let i = arrPass.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [arrPass[i], arrPass[j]] = [arrPass[j], arrPass[i]];
+        };
+    
+        return arrPass.join('');
+
+    } else if (passLength <= 5 && passLength >= 4) {
+        for (let i = 0; i < arrPass.length; i++) {
+            if (i === 1) {
+                arrPass[i] = specialSymbs[randomNum(specialSymbs)];
+            };
+            if (i === 2) {
+                arrPass[i] = nums[randomNum(randomNum)];
+            };
+            if (i === 3) {
+                arrPass[i] = strUpperAbc[randomNum(strUpperAbc)];
+            };
+        };
+
+        for (let i = arrPass.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [arrPass[i], arrPass[j]] = [arrPass[j], arrPass[i]];
+        };
+    
+        return arrPass.join('');
+
+    } else {
+        return `Error!!! Слишком мало символов для надёжного пароля.`
+    }
+}
+
+let testPass = hardPass();
+console.log(testPass);
