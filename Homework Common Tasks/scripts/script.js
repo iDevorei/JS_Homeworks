@@ -532,5 +532,5 @@ function hardPass(passLength = 8) {
     }
 }
 
-let testPass = hardPass();
+let testPass = hardPass(12);
 console.log(testPass);
